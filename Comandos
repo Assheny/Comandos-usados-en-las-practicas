@@ -1,0 +1,37 @@
+COMANDOS DE RED:
+---------------
+ip addr                 # Ver interfaces de red
+nmcli device status     # Estado de dispositivos de red
+nmcli con show         # Mostrar conexiones
+nmcli con add          # Crear nueva conexión
+nmcli con up/down      # Activar/desactivar conexión
+systemctl restart NetworkManager  # Reiniciar servicio de red
+ping                   # Probar conectividad
+nslookup              # Consulta DNS
+dig                   # Consulta DNS avanzada
+
+COMANDOS DE USUARIOS:
+--------------------
+adduser               # Crear usuario
+passwd                # Cambiar contraseña
+usermod -aG           # Agregar usuario a grupo
+groupadd              # Crear grupo
+groupdel              # Eliminar grupo
+userdel -r            # Eliminar usuario y su directorio
+groups                # Ver grupos de un usuario
+getent passwd         # Ver usuarios del sistema
+getent group          # Ver grupos del sistema
+
+COMANDOS DE ARCHIVOS:
+--------------------
+mkdir                 # Crear directorio
+touch                 # Crear archivo vacío
+ls -la                # Listar con permisos detallados
+vi                    # Editor de texto
+chmod                 # Cambiar permisos
+chown                 # Cambiar propietario
+cp                    # Copiar archivos
+mv                    # Mover/renombrar archivos
+rm                    # Eliminar archivos
+rm -rf                # Eliminar recursivamente
+stat                  # Ver información de archivo
