@@ -1,37 +1,57 @@
-COMANDOS DE RED:
----------------
-ip addr                 # Ver interfaces de red
-nmcli device status     # Estado de dispositivos de red
-nmcli con show         # Mostrar conexiones
-nmcli con add          # Crear nueva conexión
-nmcli con up/down      # Activar/desactivar conexión
-systemctl restart NetworkManager  # Reiniciar servicio de red
-ping                   # Probar conectividad
-nslookup              # Consulta DNS
-dig                   # Consulta DNS avanzada
+Practica 2: Configuración de parametros de red.
 
-COMANDOS DE USUARIOS:
---------------------
-adduser               # Crear usuario
-passwd                # Cambiar contraseña
-usermod -aG           # Agregar usuario a grupo
-groupadd              # Crear grupo
-groupdel              # Eliminar grupo
-userdel -r            # Eliminar usuario y su directorio
-groups                # Ver grupos de un usuario
-getent passwd         # Ver usuarios del sistema
-getent group          # Ver grupos del sistema
+ip addr
+#Configurar DHCP 
+nmcli con add type ethernet con-name dhcp-connection ifname ens33 ipv4.method auto
+nmcli con up dhcp-connection
+nmcli con show dhcp-connection
+#Configurar red estatica
+nmcli con add type ethernet con-name static-connection ifname ens33 ipv4.method manual ipv4.address 192.168.1.100/24 ipv4.gateway 192.168.1.1 ipv4.dns "8.8.8.8 8.8.4.4"
+nmcli con up static-connection
+nmcli con show static-connection
 
-COMANDOS DE ARCHIVOS:
---------------------
-mkdir                 # Crear directorio
-touch                 # Crear archivo vacío
-ls -la                # Listar con permisos detallados
-vi                    # Editor de texto
-chmod                 # Cambiar permisos
-chown                 # Cambiar propietario
-cp                    # Copiar archivos
-mv                    # Mover/renombrar archivos
-rm                    # Eliminar archivos
-rm -rf                # Eliminar recursivamente
-stat                  # Ver información de archivo
+Practica 3: Gestion de Usuario y grupos
+
+# Crear usuario con nombre "usuario123"
+sudo adduser usuario123
+sudo passwd usuario123
+# Agregar usuario al grupo wheel (permisos sudo)
+sudo usermod -aG wheel usuario123
+# Verificar grupos del usuario
+groups usuario123
+# Crear grupo "guest"
+sudo groupadd guest
+# Crear usuario "guestuser"
+sudo adduser guestuser
+sudo passwd guestuser
+# Agregar "guestuser" al grupo "guest"
+sudo usermod -aG guest guestuser
+# Verificar grupos de guestuser
+groups guestuser
+# Eliminar usuario guestuser y su home
+sudo userdel -r guestuser
+# Eliminar grupo guest
+sudo groupdel guest
+
+Practica 4: Gestion de Permisos de archivos
+
+# Crear carpeta materia
+mkdir materia
+cd materia
+# Crear archivo estudiante.txt
+touch estudiante.txt
+# Editar con vi (manual)
+vi estudiante.txt
+# (En vi: i para insertar, escribir texto, Esc, :wq para guardar y salir)
+# Cambiar permisos para control total solo propietario
+chmod 700 estudiante.txt
+# Cambiar permisos para control total solo grupo propietario
+chmod 070 estudiante.txt
+cd ..
+# Crear carpeta materia2
+mkdir materia2
+# Copiar archivo estudiante.txt a materia2
+cp materia/estudiante.txt materia2/
+# Eliminar carpeta materia y su contenido
+rm -r materia
+
