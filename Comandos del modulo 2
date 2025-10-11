@@ -1,0 +1,42 @@
+Práctica 1 
+
+bash
+sudo dnf -y update
+sudo dnf -y upgrade  
+dnf repolist
+dnf repolist -v
+dnf search bashtop
+sudo dnf -y install epel-release
+sudo dnf -y install bashtop
+bashtop
+sudo dnf -y remove bashtop
+sudo dnf -y autoremove
+sudo dnf clean all
+
+Práctica 2 
+crontab -e
+# Agregar: 0 23 * * * /usr/bin/dnf -y update
+# Agregar: 0 3 * * 0 /usr/sbin/reboot
+crontab -l
+ls /tmp
+at now + 1 minute
+# Escribir: rm -rf /tmp/* #enter
+# Presionar Ctrl+D
+atq
+ls /tmp
+
+Práctica 3
+lsblk
+sudo fdisk /dev/sdb
+# En fdisk: n, p, Enter, Enter, Enter, w
+sudo mkfs.ext4 /dev/sdb1
+mkdir ~/nueva_carpeta
+sudo mount /dev/sdb1 ~/nueva_carpeta
+cd ~/nueva_carpeta
+touch AdrianAlcantara.txt
+ls -la
+cd ~
+sudo umount ~/nueva_carpeta
+sudo mount /dev/sdb1 /mnt
+cd /mnt
+ls -la
